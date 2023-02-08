@@ -2,6 +2,11 @@
 {
     public static class Utils
     {
+        /// <summary>
+        /// Gets the information of drones and their corresponding maximum weight capacities.
+        /// </summary>
+        /// <param name="line">Datasource containing the information about drones and their weights capacities</param>
+        /// <returns>Dictionario of drones and their corresponding maximum weight capacities</returns>
         public static Dictionary<string, int> GetDronesAndWeights(string line)
         {
             Dictionary<string, int> dronesAndWeights = new();
@@ -22,6 +27,11 @@
             return dronesAndWeights;
         }
 
+        /// <summary>
+        /// Gets the information with the location and the weight a drone can dispatch.
+        /// </summary>
+        /// <param name="line">Datasource containing the information about locations and their weights</param>
+        /// <returns>Tuble of (location, weight)</returns>
         public static (string key, int value) GetLocations(string line)
         {
             string locationName = "";
