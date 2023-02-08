@@ -6,11 +6,14 @@
         {
             Dictionary<string, int> dronesAndWeights = new();
             int i = 0;
+            
+            // We make groups of 2 elements, [Drone name, Drone max weight]
             var query = from s in line.Split(",")
                         let num = i++
                         group s by num / 2 into g
                         select g.ToArray();
 
+            // Then we parse the information into a dictionary
             foreach (var item in query.ToList())
             {
                 dronesAndWeights.Add(item[0].Trim(), int.Parse(item[1].Trim(' ', '[', ']')));
@@ -34,6 +37,13 @@
             return (key: locationName, value: locationWeight);
         }
 
+        /// <summary>
+        /// Gets the all the possible routes for a drone to make on each trip to deliver the packages
+        /// based on its max weight capacity and sorted in ascending order by list length.
+        /// </summary>
+        /// <param name="target">Drone's max weight capacity</param>
+        /// <param name="numbers">List of weights a drone can ship at each location</param>
+        /// <returns>Routes sorted in ascending order by list length</returns>
         public static List<List<int>> GetBestRoutes(int target, int[] numbers)
         {
             bool[] wheel = new bool[numbers.Length];
@@ -61,6 +71,12 @@
             return routes;
         }
 
+        /// <summary>
+        /// Gets the list of trips a drone can make based on the best route possible.
+        /// </summary>
+        /// <param name="locations">Locations</param>
+        /// <param name="weights">List of weights of the best trip</param>
+        /// <returns>The best trip possible based on the best route possible determined by its weights</returns>
         public static List<string> GetDronesRoutes(Dictionary<string, int> locations, List<int> weights)
         {
             List<string> locationRoutes = new();
