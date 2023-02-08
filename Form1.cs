@@ -83,7 +83,8 @@ namespace DronesDeliveryService
                         // Adding trip #
                         dt.Rows.Add($"Trip #{index}");
 
-                        // Getting drones best routes
+                        // From the grouped object, we take the first object that corresponds to the best route possible
+                        // Then we get the output to show on the DataGridView object.
                         var routes = Utils.Utils.GetDronesRoutes(locations, weight.ToList()[0]);
 
                         // Adding the routes in a new row
